@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "290414861825",
+    "project_id": "miniproyecto2-dam",
+    "storage_bucket": "miniproyecto2-dam.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:290414861825:android:c8105b66860e1a5a962a00",
+        "android_client_info": {
+          "package_name": "com.example.miniproyecto2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQwk5YcNVnHN-_eoKzxLTUPXQ7EBgAOhc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
