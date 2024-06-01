@@ -2,4 +2,8 @@
     <string name="app_name">miniproyecto2</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="background">Storege Room</string>
+    <string name="login">INICIAR SESIÓN</string>
+    <string name="signup">REGISTRARSE</string>
+    <string name="slogan">TU INVENTARIO EN TUS MANOS</string>
 </resources>
