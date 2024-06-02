@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,6 +33,21 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observadorViewModel()
+        controllers()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            requireActivity().finish()
+        }
+    }
+
+    private fun controllers() {
+        binding.addButton.setOnClickListener{
+            Toast.makeText(context, "Navegar a Crear Item", Toast.LENGTH_SHORT).show()
+            //findNavController().navigate(R.id.action_homeFragment_to_createItemFragment)
+        }
     }
 
     private fun observadorViewModel(){
@@ -41,7 +57,6 @@ class HomeFragment : Fragment() {
     private fun observerItems(){
         inventoryViewModel.getItems()
         inventoryViewModel.items.observe(viewLifecycleOwner){items ->
-            Toast.makeText(context, "${items}", Toast.LENGTH_SHORT).show()
             val recycler = binding.recyclerview
             val layoutManager = LinearLayoutManager(context)
             recycler.layoutManager = layoutManager

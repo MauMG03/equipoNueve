@@ -12,11 +12,13 @@ class InventoryViewHolder (binding: InventoryItemBinding, navController: NavCont
     val bindingItem = binding
     val navController = navController
 
-    fun setInventoryItem(item: Item) {
+    fun setInventoryItem(item: Item, position: Int) {
         bindingItem.itemName.text = item.name
         bindingItem.itemDescription.text = item.description
-        bindingItem.itemQuantity.text = "${item.quantity}"
-        bindingItem.itemPrice.text = "$ ${item.price}"
+        bindingItem.itemQuantity.text = "${item.quantity} unidades disponibles"
+        bindingItem.itemPrice.text = "$${item.price} c/u"
+        bindingItem.itemCategory.text = item.category
+        bindingItem.itemPosition.text = "#${position}"
 
         Glide.with(bindingItem.root.context).load(item.image).into(bindingItem.imageItem)
         bindingItem.inventoryItem.setOnClickListener {
