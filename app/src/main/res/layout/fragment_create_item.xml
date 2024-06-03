@@ -1,21 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
     </data>
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".view.fragment.CreateItemFragment">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
+        <ImageView
+            android:id="@+id/ivBanner"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+            android:layout_height="140dp"
+            android:background="@mipmap/imagebanner"
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
-    </FrameLayout>
+        <ImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="140dp"
+            android:layout_height="50dp"
+            android:background="@mipmap/black_logo"
+            app:layout_constraintBottom_toBottomOf="@id/ivBanner"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="10dp"
+            />
+
+        <ImageView
+            android:id="@+id/ivOpenGiftBox"
+            android:layout_width="140dp"
+            android:layout_height="100dp"
+            android:background="@mipmap/open_gift_box"
+            app:layout_constraintTop_toBottomOf="@id/ivBanner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/agregar_items"
+            android:textSize="30sp"
+            android:textColor="@color/dark_orange"
+            app:layout_constraintBottom_toBottomOf="@id/ivOpenGiftBox"
+            app:layout_constraintEnd_toEndOf="@id/ivOpenGiftBox"
+            app:layout_constraintStart_toStartOf="@id/ivOpenGiftBox"
+            app:layout_constraintTop_toTopOf="@id/ivOpenGiftBox"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
