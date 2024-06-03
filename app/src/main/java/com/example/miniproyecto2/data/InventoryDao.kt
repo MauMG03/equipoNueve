@@ -31,7 +31,7 @@ class InventoryDao @Inject constructor(
             }
         }
 
-       suspend fun saveItem(item:Item) {
+       override suspend fun addItem(item:Item) {
             firestore.collection("item")
                 .add(item)
                 .addOnSuccessListener {  documentReference ->
@@ -40,5 +40,5 @@ class InventoryDao @Inject constructor(
                 .addOnFailureListener{e ->
                     Log.w("Item", "Error adding the item", e)
                 }
-        }
+       }
 }

@@ -15,4 +15,10 @@ class InventoryRepository @Inject constructor(
             inventoryDao.getItems()
         }
     }
+
+    suspend fun addItem(item:Item){
+        return withContext(Dispatchers.IO){
+            inventoryDao.addItem(item)
+        }
+    }
 }
