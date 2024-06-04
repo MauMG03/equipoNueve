@@ -20,6 +20,10 @@ class InventoryViewModel @Inject constructor(
     private val _items = MutableLiveData<MutableList<Item>>()
     val items: LiveData<MutableList<Item>> get() = _items
 
+    // Para almacenar la lista de razas
+    private val _categories = MutableLiveData<MutableList<String>>()
+    val categories: LiveData<MutableList<String>> = _categories
+
     fun getItems() {
         viewModelScope.launch {
             try {
@@ -28,6 +32,17 @@ class InventoryViewModel @Inject constructor(
 
             }
         }
+    }
+
+    private var initialized = false
+    fun getCategories():MutableLiveData<MutableList<String>> {
+       if(!initialized){
+           val categories = mutableListOf("Jardineria","Cocina","Hogar","Electronicos","Plomeria","Vehiculos",
+               "Muebles","Calzado","Accesorios","Licores")
+           _categories.value = categories
+           initialized = true
+       }
+        return _categories
     }
 
     fun addItem(name:String,des:String,price:Double,qty:Int,category:String){

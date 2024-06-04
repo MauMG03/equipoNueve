@@ -6,11 +6,6 @@
     app:startDestination="@id/createItemFragment">
 
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.miniproyecto2.view.fragment.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
-    <fragment
         android:id="@+id/createItemFragment"
         android:name="com.example.miniproyecto2.view.fragment.CreateItemFragment"
         android:label="CreateItemFragment" />

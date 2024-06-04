@@ -60,7 +60,7 @@
             app:layout_constraintTop_toBottomOf="@id/ivOpenGiftBox" />
 
         <EditText
-            android:id="@+id/tiName"
+            android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/tvName"
@@ -88,10 +88,10 @@
             android:text="@string/cantidad"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tiName" />
+            app:layout_constraintTop_toBottomOf="@id/etName" />
 
         <EditText
-            android:id="@+id/tiQuantity"
+            android:id="@+id/etQuantity"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/tvQuantity"
@@ -112,10 +112,10 @@
             android:text="@string/precio_unitario"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@id/guideline"
-            app:layout_constraintTop_toBottomOf="@id/tiName" />
+            app:layout_constraintTop_toBottomOf="@id/etName" />
 
         <EditText
-            android:id="@+id/tiUnitPrice"
+            android:id="@+id/etUnitPrice"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/tvUnitPrice"
@@ -136,10 +136,10 @@
             android:text="@string/descripci_n"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tiQuantity" />
+            app:layout_constraintTop_toBottomOf="@id/etQuantity" />
 
         <EditText
-            android:id="@+id/tiDescription"
+            android:id="@+id/etDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/tvDescription"
@@ -160,7 +160,7 @@
             android:text="@string/categor_a"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tiDescription" />
+            app:layout_constraintTop_toBottomOf="@id/etDescription" />
 
         <AutoCompleteTextView
             android:id="@+id/atvCategory"
@@ -177,6 +177,7 @@
             app:layout_constraintTop_toBottomOf="@id/tvCategory"/>
 
         <Button
+            android:id="@+id/btAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/atvCategory"
