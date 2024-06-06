@@ -2,6 +2,7 @@ package com.example.miniproyecto2.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.miniproyecto2.model.Item
+import com.example.miniproyecto2.repository.ImageResponseRepository
 import com.example.miniproyecto2.repository.InventoryRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
@@ -19,10 +20,12 @@ class InventoryViewModelTest {
     val rule = InstantTaskExecutorRule()
     private lateinit var inventoryViewModel: InventoryViewModel
     private lateinit var inventoryRepository: InventoryRepository
+    private  lateinit var imageResponseRepository: ImageResponseRepository
     @Before
     fun setUp() {
         inventoryRepository = Mockito.mock(InventoryRepository::class.java)
-        inventoryViewModel = InventoryViewModel(inventoryRepository)
+        imageResponseRepository = Mockito.mock(ImageResponseRepository::class.java)
+        inventoryViewModel = InventoryViewModel(inventoryRepository, imageResponseRepository)
     }
 
     @Test

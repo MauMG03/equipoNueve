@@ -45,8 +45,7 @@ class HomeFragment : Fragment() {
 
     private fun controllers() {
         binding.addButton.setOnClickListener{
-            Toast.makeText(context, "Navegar a Crear Item", Toast.LENGTH_SHORT).show()
-            //findNavController().navigate(R.id.action_homeFragment_to_createItemFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_createItemFragment)
         }
     }
 

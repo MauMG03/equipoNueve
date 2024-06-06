@@ -3,10 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/createItemFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/createItemFragment"
         android:name="com.example.miniproyecto2.view.fragment.CreateItemFragment"
         android:label="CreateItemFragment" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.miniproyecto2.view.fragment.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_createItemFragment"
+            app:destination="@id/createItemFragment" />
+    </fragment>
 </navigation>
