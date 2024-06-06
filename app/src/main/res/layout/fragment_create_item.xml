@@ -68,7 +68,9 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="25dp"
             android:background="@drawable/edit_text_bg"
-            android:hint="Flor rosa"
+            android:inputType="textPersonName"
+            android:maxLength="20"
+            android:hint="@string/flor_rosa"
             app:layout_constraintStart_toStartOf="parent" />
 
 
@@ -100,6 +102,7 @@
             android:layout_marginStart="22dp"
             android:layout_marginEnd="8dp"
             android:layout_marginTop="5dp"
+            android:inputType="number"
             android:background="@drawable/edit_text_bg"
             android:hint="@string/_3" />
 
@@ -124,6 +127,7 @@
             android:layout_marginStart="22dp"
             android:layout_marginEnd="26dp"
             android:layout_marginTop="5dp"
+            android:inputType="number"
             android:background="@drawable/edit_text_bg"
             android:hint="@string/_5000" />
 
@@ -148,6 +152,8 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="25dp"
+            android:inputType="text"
+            android:maxLength="120"
             android:hint="@string/description_hint"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -170,6 +176,7 @@
             android:layout_marginEnd="25dp"
             android:layout_marginTop="10dp"
             android:hint="@string/jardiner_a"
+            android:inputType="text"
             style="@style/TextAppearance.AppCompat.Widget.DropDownItem"
             android:textSize="18sp"
             android:background="@drawable/edit_text_bg"
