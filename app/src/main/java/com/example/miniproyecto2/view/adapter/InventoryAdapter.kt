@@ -21,6 +21,6 @@ class InventoryAdapter(private val listInventory: MutableList<Item>, private val
 
     override fun onBindViewHolder(holder: InventoryViewHolder, position: Int) {
         val inventory = listInventory[position]
-        holder.setInventoryItem(inventory)
+        holder.setInventoryItem(inventory, position)
     }
 }

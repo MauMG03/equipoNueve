@@ -12,28 +12,158 @@
         android:layout_height="match_parent"
         tools:context=".view.fragment.HomeInventoryFragment">
 
+        <FrameLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="105dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:id="@+id/header_background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/home_banner" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="0dp"
+                android:background="@android:color/transparent"
+                android:padding="0dp">
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/black_logo"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="10dp"
+                    android:scaleType="fitXY"
+                    />
+
+                <ImageView
+                    android:id="@+id/user_icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="14dp"
+                    android:src="@drawable/ic_launcher_foreground" />
+
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="4dp"
+                    android:layout_toStartOf="@id/user_icon"
+                    android:text="Getial"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/topshelf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-10.9dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/shelf"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitulo" />
+
+        <ImageView
+            android:id="@+id/leftstring"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:src="@drawable/string"
+            android:scaleType="fitXY"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintRight_toLeftOf="@+id/tvTitulo"
+            app:layout_constraintTop_toBottomOf="@+id/header"
+            app:layout_constraintBottom_toTopOf="@+id/topshelf"/>
+
+        <ImageView
+            android:id="@+id/rightstring"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:src="@drawable/string"
+            android:scaleType="fitXY"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toEndOf="@+id/tvTitulo"
+            app:layout_constraintTop_toBottomOf="@+id/header"
+            app:layout_constraintBottom_toTopOf="@+id/topshelf"/>
+
         <TextView
             android:id="@+id/tvTitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="inventario"
-            android:textStyle="bold"
-            android:layout_marginVertical="15dp"
-            android:textSize="25sp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:text="Tu Inventario"
+            android:textStyle="normal"
+            android:layout_marginVertical="10dp"
+            android:textSize="40sp"
+            android:textColor="#797979"
+            app:layout_constraintTop_toBottomOf="@id/header"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/leftshelf"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:src="@drawable/veriticalshelf"
+            android:scaleType="centerCrop"
+            android:rotation="180"
+            android:layout_marginStart="-13dp"
+            android:layout_marginTop="-1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/topshelf"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="20dp"
-            tools:listitem="@layout/inventory_item"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitulo"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/leftshelf"
+            app:layout_constraintRight_toLeftOf="@+id/rightshelf"
+            app:layout_constraintTop_toBottomOf="@+id/topshelf"
+            app:layout_constraintVertical_bias="0.0"
+            android:layout_marginHorizontal="22dp"
+            tools:listitem="@layout/inventory_item" />
+
+        <ImageView
+            android:id="@+id/rightshelf"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:src="@drawable/veriticalshelf"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="-1dp"
+            android:layout_marginEnd="-13dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/topshelf"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="30dp"
+            android:backgroundTint="#EEEEEF"
+            android:src="@drawable/baseline_add_24"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
