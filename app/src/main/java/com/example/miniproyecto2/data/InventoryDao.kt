@@ -1,5 +1,6 @@
 package com.example.miniproyecto2.data
 
+import android.util.Log
 import android.widget.Toast
 import com.example.miniproyecto2.model.Item
 import com.google.firebase.firestore.FirebaseFirestore
@@ -29,4 +30,15 @@ class InventoryDao @Inject constructor(
                 mutableListOf()
             }
         }
+
+       override suspend fun addItem(item:Item) {
+            firestore.collection("item")
+                .add(item)
+                .addOnSuccessListener {  documentReference ->
+                    Log.d("Item", "DocumentSnapshot added with ID: ${documentReference.id}")
+                }
+                .addOnFailureListener{e ->
+                    Log.w("Item", "Error adding the item", e)
+                }
+       }
 }

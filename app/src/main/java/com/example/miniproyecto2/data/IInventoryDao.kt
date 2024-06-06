@@ -4,4 +4,6 @@ import com.example.miniproyecto2.model.Item
 
 interface IInventoryDao {
     suspend fun getItems(): MutableList<Item>
+
+    suspend fun addItem(item: Item): Unit
 }
