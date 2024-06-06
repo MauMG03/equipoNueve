@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var  binding: FragmentHomeBinding
-    private val inventoryViewModel: InventoryViewModel by viewModels()
+    private val inventoryViewModel: InventoryViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,9 +58,28 @@ class HomeFragment : Fragment() {
 
     private fun observadorViewModel(){
         observerItems()
+        cleanButtonObserver()
     }
 
-    private fun observerItems(){
+    private fun cleanButtonObserver(){
+        inventoryViewModel.showClearButton.observe(viewLifecycleOwner) { showButton ->
+            if (showButton) {
+                binding.searchButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_clear))
+                binding.searchButton.setOnClickListener{
+                    findNavController().navigate(R.id.action_homeFragment_self)
+                }
+                binding.searchButton.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.green)
+            } else {
+                binding.searchButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_search))
+                binding.searchButton.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.dark_gray)
+                binding.searchButton.setOnClickListener{
+                    showDialog()
+                }
+            }
+        }
+    }
+
+    fun observerItems(){
         inventoryViewModel.getItems()
         inventoryViewModel.items.observe(viewLifecycleOwner){items ->
             val recycler = binding.recyclerview

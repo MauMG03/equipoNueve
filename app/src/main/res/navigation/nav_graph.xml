@@ -16,5 +16,8 @@
         <action
             android:id="@+id/action_homeFragment_to_createItemFragment"
             app:destination="@id/createItemFragment" />
+        <action
+            android:id="@+id/action_homeFragment_self"
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

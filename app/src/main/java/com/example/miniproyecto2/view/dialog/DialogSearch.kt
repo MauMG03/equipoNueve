@@ -11,16 +11,19 @@ import android.widget.CheckBox
 import android.widget.EditText
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.example.miniproyecto2.R
 import com.example.miniproyecto2.databinding.DialogSearchBinding
+import com.example.miniproyecto2.model.SearchCriteria
+import com.example.miniproyecto2.view.fragment.HomeFragment
 import com.example.miniproyecto2.viewmodel.InventoryViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MiDialogo : DialogFragment() {
-    private val inventoryViewModel: InventoryViewModel by viewModels()
+    private val inventoryViewModel: InventoryViewModel by activityViewModels()
     private var _binding: DialogSearchBinding? = null
     private val binding get() = _binding!!
 
@@ -36,12 +39,21 @@ class MiDialogo : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         controllers()
+        closeObserver()
         observeCategories()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun closeObserver(){
+        inventoryViewModel.closeDialog.observe(viewLifecycleOwner){ close ->
+            if(close){
+                dismiss()
+            }
+        }
     }
 
     private fun updateFieldState(checkbox: CheckBox, editText: EditText, hintText: String) {
@@ -84,13 +96,13 @@ class MiDialogo : DialogFragment() {
         binding.buttonSearch.setOnClickListener {
             if(isAFieldFilled()){
                 val name = binding.etName.text.toString()
-                val desde = binding.etDesde.text.toString()
-                val hasta = binding.etHasta.text.toString()
+                val desde = if (binding.etDesde.text.toString() != "") binding.etDesde.text.toString().toDouble() else 0.0
+                val hasta = if (binding.etHasta.text.toString() != "") binding.etHasta.text.toString().toDouble() else 1000000000.0
                 val category = binding.atvCategory.text.toString()
                 val username = binding.etUsername.text.toString()
 
-                //inventoryViewModel.searchItems(name,desde,hasta,category,username)
-                dismiss()
+                val searchCriteria = SearchCriteria(name,desde,hasta,category,username)
+                inventoryViewModel.searchItems(searchCriteria)
             } else {
                 Snackbar.make(binding.root, "Llene algun criterio de busqueda", Snackbar.LENGTH_LONG).show()
             }
@@ -109,7 +121,6 @@ class MiDialogo : DialogFragment() {
 
     fun isAFieldFilled():Boolean {
         val name = binding.etName.text.toString() != "" && binding.cbName.isChecked
-        Log.d("NAME", name.toString())
         val desde = binding.etDesde.text.toString() != "" && binding.cbPrice.isChecked
         val hasta = binding.etHasta.text.toString() != "" && binding.cbPrice.isChecked
         val cat = binding.atvCategory.text.toString() != "" && binding.cbCategory.isChecked
