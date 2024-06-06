@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
-                android:src="@drawable/home_banner" />
+                android:src="@mipmap/imagebanner" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -38,7 +38,7 @@
                 <ImageView
                     android:layout_width="150dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/black_logo"
+                    android:src="@mipmap/black_logo"
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="10dp"
                     android:scaleType="fitXY"
