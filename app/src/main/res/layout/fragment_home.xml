@@ -25,7 +25,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
-                android:src="@mipmap/imagebanner" />
+                android:src="@mipmap/imagebanner"
+                android:contentDescription="@string/banner_image" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -36,33 +37,52 @@
                 android:padding="0dp">
 
                 <ImageView
+                    android:id="@+id/ivLogo"
                     android:layout_width="150dp"
                     android:layout_height="50dp"
-                    android:src="@mipmap/black_logo"
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="10dp"
                     android:scaleType="fitXY"
-                    />
+                    android:src="@mipmap/black_logo"
+                    android:contentDescription="@string/app_logo_image" />
 
                 <ImageView
-                    android:id="@+id/user_icon"
+                    android:id="@+id/ivExit"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="14dp"
-                    android:src="@drawable/ic_launcher_foreground" />
+                    android:contentDescription="@string/log_out_icon"
+                    android:src="@drawable/ic_exit" />
 
                 <TextView
-                    android:id="@+id/user_name"
+                    android:id="@+id/tvUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignEnd="@id/ivExit"
                     android:layout_centerVertical="true"
-                    android:layout_marginEnd="4dp"
-                    android:layout_toStartOf="@id/user_icon"
-                    android:text="Getial"
+                    android:layout_marginEnd="5dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="40dp"
+                    android:paddingBottom="25dp"
+                    android:text="@string/usuario"
                     android:textColor="@android:color/black"
                     android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tvExit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@id/ivExit"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="5dp"
+                    android:paddingStart="10dp"
+                    android:paddingTop="15dp"
+                    android:paddingEnd="40dp"
+                    android:text="@string/cerrar_sesi_n"
+                    android:textColor="@color/intense_red"
+                    android:textSize="15sp" />
             </RelativeLayout>
 
         </FrameLayout>
@@ -75,18 +95,22 @@
             android:scaleType="centerCrop"
             android:src="@drawable/shelf"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitulo" />
+            app:layout_constraintTop_toBottomOf="@+id/tvTitulo"
+            android:contentDescription="@string/top_shelf_image" />
 
         <ImageView
             android:id="@+id/leftstring"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:src="@drawable/string"
+            app:tint="@color/black"
+            android:tintMode="multiply"
             android:scaleType="fitXY"
             android:layout_marginEnd="20dp"
             app:layout_constraintRight_toLeftOf="@+id/tvTitulo"
             app:layout_constraintTop_toBottomOf="@+id/header"
-            app:layout_constraintBottom_toTopOf="@+id/topshelf"/>
+            app:layout_constraintBottom_toTopOf="@+id/topshelf"
+            android:contentDescription="@string/left_chain_image" />
 
         <ImageView
             android:id="@+id/rightstring"
@@ -97,13 +121,14 @@
             android:layout_marginStart="20dp"
             app:layout_constraintStart_toEndOf="@+id/tvTitulo"
             app:layout_constraintTop_toBottomOf="@+id/header"
-            app:layout_constraintBottom_toTopOf="@+id/topshelf"/>
+            app:layout_constraintBottom_toTopOf="@+id/topshelf"
+            android:contentDescription="@string/right_chain_image" />
 
         <TextView
             android:id="@+id/tvTitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tu Inventario"
+            android:text="@string/tu_inventario"
             android:textStyle="normal"
             android:layout_marginVertical="10dp"
             android:textSize="40sp"
@@ -119,12 +144,12 @@
             android:src="@drawable/veriticalshelf"
             android:scaleType="centerCrop"
             android:rotation="180"
-            android:layout_marginStart="-13dp"
+            android:layout_marginStart="-15dp"
             android:layout_marginTop="-1dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/topshelf"
-            app:layout_constraintBottom_toBottomOf="parent" />
-
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:contentDescription="@string/left_shelf_wall_image"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
@@ -151,7 +176,8 @@
             android:layout_marginEnd="-13dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/topshelf"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:contentDescription="@string/right_shelf_wall_image" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addButton"
@@ -161,8 +187,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="30dp"
-            android:backgroundTint="#EEEEEF"
+            style="@style/MyFloatingActionButtonStyle"
             android:src="@drawable/baseline_add_24"
+            android:contentDescription="@string/add_item_button" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/searchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="30dp"
+            android:layout_marginBottom="30dp"
+            style="@style/MyFloatingActionButtonStyle"
+            android:src="@drawable/ic_search"
+            android:contentDescription="@string/search_item_button"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

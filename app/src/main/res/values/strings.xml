@@ -14,4 +14,17 @@
     <string name="jardiner_a">Jardinería</string>
     <string name="agregar">Agregar</string>
     <string name="flor_rosa">Flor rosa</string>
+    <string name="add_item_button">Add Item button</string>
+    <string name="search_item_button">Search item button</string>
+    <string name="left_shelf_wall_image">Left shelf wall image</string>
+    <string name="right_shelf_wall_image">Right shelf wall image</string>
+    <string name="tu_inventario">Tu Inventario</string>
+    <string name="right_chain_image">Right chain image</string>
+    <string name="left_chain_image">Left chain image</string>
+    <string name="top_shelf_image">Top shelf image</string>
+    <string name="usuario">Usuario</string>
+    <string name="log_out_icon">Log out icon</string>
+    <string name="cerrar_sesi_n">Cerrar sesión</string>
+    <string name="app_logo_image">App logo image</string>
+    <string name="banner_image">Banner image</string>
 </resources>
