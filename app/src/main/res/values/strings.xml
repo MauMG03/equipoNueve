@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">miniproyecto2</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="agregar_items">Agregar Items</string>
     <string name="nombre_del_item">Nombre del item</string>
@@ -27,4 +26,21 @@
     <string name="cerrar_sesi_n">Cerrar sesión</string>
     <string name="app_logo_image">App logo image</string>
     <string name="banner_image">Banner image</string>
+    <string name="busqueda">Búsqueda</string>
+    <string name="searchicon">searchIcon</string>
+    <string name="buscar_por_nombre">Buscar por nombre</string>
+    <string name="inserta_el_nombre_a_buscar">Inserta el nombre a buscar</string>
+    <string name="filtrar_por_precio">Filtrar por precio</string>
+    <string name="desde">Desde</string>
+    <string name="_0">0</string>
+    <string name="hasta">Hasta</string>
+    <string name="filtrar_por_categor_a">Filtrar por categoría</string>
+    <string name="filtrar_por_descripci_n">Filtrar por descripción</string>
+    <string name="inserta_la_descripci_n">Inserta la descripción</string>
+    <string name="inserta_la_descripci_n_a_buscar">Inserta la descripción a buscar</string>
+    <string name="buscar">Buscar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="_10000000">10000000</string>
+    <string name="inserta_el_nombre_de_usuario_a_buscar">Inserta el nombre de usuario a buscar</string>
+    <string name="filtrar_por_usuario">Filtrar por usuario</string>
 </resources>

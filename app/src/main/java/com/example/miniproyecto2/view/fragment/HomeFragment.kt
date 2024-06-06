@@ -1,12 +1,14 @@
 package com.example.miniproyecto2.view.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.addCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -47,6 +49,10 @@ class HomeFragment : Fragment() {
         binding.addButton.setOnClickListener{
             findNavController().navigate(R.id.action_homeFragment_to_createItemFragment)
         }
+
+        binding.searchButton.setOnClickListener{
+            showDialog()
+        }
     }
 
     private fun observadorViewModel(){
@@ -63,5 +69,13 @@ class HomeFragment : Fragment() {
             recycler.adapter = adapter
             adapter.notifyDataSetChanged()
         }
+    }
+
+    private fun showDialog(){
+        val dialogView = layoutInflater.inflate(R.layout.dialog_search, null)
+        val builder = AlertDialog.Builder(requireContext(), R.style.CustomDialogTheme)
+        builder.setView(dialogView)
+        val dialog = builder.create()
+        dialog.show()
     }
 }
