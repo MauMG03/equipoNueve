@@ -47,29 +47,43 @@ class InventoryDao @Inject constructor(
 
         override suspend fun searchItems(criteria: SearchCriteria): MutableList<Item> {
             return try {
-                var query: Query = firestore.collection("item")
-
-                if (criteria.minPrice != null && criteria.minPrice > 0.0) {
-                    query = query.whereGreaterThanOrEqualTo("price", criteria.minPrice)
-                }
-
-                if (criteria.maxPrice != null && criteria.maxPrice > 0.0) {
-                    query = query.whereLessThanOrEqualTo("price", criteria.maxPrice)
-                }
-
+                val query: Query = firestore.collection("item")
                 val itemDocs = query.get().await()
+
                 val items:MutableList<Item> = mutableListOf()
                 for (document in itemDocs.documents){
-                    items.add(Item(
-                        name = "${document.get("name")}",
-                        description = "${document.get("description")}",
-                        price = "${document.get("price")}".toDouble(),
-                        quantity = "${document.get("quantity")}".toInt(),
-                        image = "${document.get("image")}",
-                        category = "${document.get("category")}"
-                    ))
+                    var ifName = !criteria.name.isNullOrBlank()
+                    var ifMinPrice = criteria.minPrice != null && criteria.minPrice > 0
+                    var ifMaxPrice = criteria.maxPrice != null && criteria.maxPrice > 0
+                    var ifCategory = !criteria.category.isNullOrBlank()
+                    var ifUsername = !criteria.username.isNullOrBlank()
+
+                    if(ifName){
+                        ifName = !("${document.get("name")}".contains(criteria.name!!, ignoreCase = true))
+                    }
+
+                    if(ifMinPrice){
+                        ifMinPrice = !("${document.get("price")}".toDouble() >= criteria.minPrice!!)
+                    }
+                    if(ifMaxPrice){
+                        ifMaxPrice = !("${document.get("price")}".toDouble() <= criteria.maxPrice!!)
+                    }
+
+                    if(ifCategory){
+                        ifCategory = !("${document.get("category")}".contains(criteria.category!!, ignoreCase = true))
+                    }
+
+                    if(!ifName && !ifMinPrice && !ifMaxPrice && !ifCategory && !ifUsername){
+                        items.add(Item(
+                            name = "${document.get("name")}",
+                            description = "${document.get("description")}",
+                            price = "${document.get("price")}".toDouble(),
+                            quantity = "${document.get("quantity")}".toInt(),
+                            image = "${document.get("image")}",
+                            category = "${document.get("category")}"
+                        ))
+                    }
                 }
-                Log.d("Dao", "Items found: ${items.size}")
                 items
             }
             catch (e: Exception){

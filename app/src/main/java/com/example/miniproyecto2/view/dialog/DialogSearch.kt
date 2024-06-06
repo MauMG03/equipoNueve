@@ -81,7 +81,13 @@ class MiDialogo : DialogFragment() {
         }
 
         binding.cbCategory.setOnCheckedChangeListener { _, isChecked ->
-            updateFieldState(binding.cbCategory, binding.atvCategory, "Inserta la categoría a buscar")
+            updateFieldState(binding.cbCategory, binding.atvCategory, "")
+            if (binding.cbCategory.isChecked){
+                binding.tilCategory.isEnabled = true
+            } else {
+                binding.atvCategory.setText("")
+                binding.tilCategory.isEnabled = false
+            }
         }
 
         binding.cbPrice.setOnCheckedChangeListener { _, isChecked ->

@@ -40,6 +40,7 @@ class InventoryViewModel @Inject constructor(
             try {
                 _items.value = inventoryRepository.getItems()
                 _showClearButton.postValue(false)
+                _closeDialog.postValue(false)
             } catch (_: Exception){
 
             }

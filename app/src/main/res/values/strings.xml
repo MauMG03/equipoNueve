@@ -43,4 +43,6 @@
     <string name="_10000000">10000000</string>
     <string name="inserta_el_nombre_de_usuario_a_buscar">Inserta el nombre de usuario a buscar</string>
     <string name="filtrar_por_usuario">Filtrar por usuario</string>
+    <string name="jardineria">Jardineria</string>
+    <string name="calzado">Calzado</string>
 </resources>

@@ -57,6 +57,10 @@ class CreateItemFragment : Fragment() {
                 Snackbar.make(binding.root, "Llene los campos faltantes", Snackbar.LENGTH_LONG).show()
             }
         }
+
+        binding.atvCategory.setOnItemClickListener { _, _, _, _ ->
+            binding.tilCategory.isErrorEnabled = false
+        }
     }
 
     fun areFieldsFilled():Boolean {
