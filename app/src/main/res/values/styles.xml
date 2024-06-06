@@ -6,7 +6,7 @@
         <item name="backgroundTint">@color/dark_gray</item>
     </style>
 
-    <style name="CustomDialogTheme" parent="Theme.AppCompat.Dialog">
+    <style name="CustomDialogTheme" parent="@style/Theme.Miniproyecto2">
         <item name="android:background">@drawable/inventory_item_background</item>
         <item name="android:windowMinWidthMajor">85%</item>
         <item name="android:windowMinWidthMinor">85%</item>
