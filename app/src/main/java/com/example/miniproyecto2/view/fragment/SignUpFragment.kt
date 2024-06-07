@@ -14,7 +14,9 @@ import com.example.miniproyecto2.viewmodel.LoginViewModel
 import com.example.miniproyecto2.databinding.FragmentSignUpBinding
 import com.example.miniproyecto2.view.MainActivity
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SignUpFragment : Fragment() {
 
     lateinit var binding: FragmentSignUpBinding

@@ -1,9 +1,11 @@
 package com.example.miniproyecto2.repository
 
 import com.google.firebase.auth.FirebaseAuth
+import javax.inject.Inject
 
-class LoginRepository {
-    private val firebaseAuth = FirebaseAuth.getInstance()
+class LoginRepository @Inject constructor(
+    private val firebaseAuth: FirebaseAuth
+) {
 
     fun registerUser(email: String, password: String, isRegisterComplete: (Boolean)-> Unit){
         if (email.isNotEmpty() && password.isNotEmpty()){

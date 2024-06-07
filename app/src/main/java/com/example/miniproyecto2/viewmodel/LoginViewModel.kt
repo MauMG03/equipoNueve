@@ -2,9 +2,15 @@ package com.example.miniproyecto2.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.example.miniproyecto2.repository.LoginRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class LoginViewModel : ViewModel(){
-    private val repository = LoginRepository()
+@HiltViewModel
+class LoginViewModel  @Inject constructor(
+    private val repository: LoginRepository
+
+) : ViewModel(){
+
     fun registerUser(email: String, password: String, isRegisterComplete: (Boolean)-> Unit ){
         repository.registerUser(email, password){
                 response -> isRegisterComplete(response)
