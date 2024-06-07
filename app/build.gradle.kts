@@ -44,6 +44,7 @@ android {
 }
 
 dependencies {
+    implementation("androidx.activity:activity:1.8.0")
     val navVersion = "2.3.5"
 
     implementation("androidx.core:core-ktx:1.13.1")
