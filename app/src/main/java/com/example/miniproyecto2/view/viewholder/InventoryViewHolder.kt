@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.miniproyecto2.R
 import com.example.miniproyecto2.databinding.InventoryItemBinding
 import com.example.miniproyecto2.model.Item
 
@@ -24,7 +25,7 @@ class InventoryViewHolder (binding: InventoryItemBinding, navController: NavCont
         bindingItem.inventoryItem.setOnClickListener {
             val bundle = Bundle()
             bundle.putSerializable("item", item)
-            //navController.navigate(R.id.action_homeFragment_to_itemDetailsFragment, bundle)
+            navController.navigate(R.id.action_homeFragment_to_editFragment, bundle)
         }
     }
 }
