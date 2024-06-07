@@ -8,6 +8,18 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.miniproyecto2.view.fragment.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/action_loginFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_in_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        tools:layout="@layout/fragment_sign_up"
+        android:name="com.example.miniproyecto2.view.fragment.SignUpFragment"
+        android:label="SignUpFragment" />
 </navigation>

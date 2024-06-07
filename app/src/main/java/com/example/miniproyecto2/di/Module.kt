@@ -2,6 +2,9 @@ package com.example.miniproyecto2.di
 
 import android.content.Context
 import com.example.miniproyecto2.data.InventoryDao
+import com.example.miniproyecto2.utils.Constants.BASE_URL
+import com.example.miniproyecto2.webservice.ApiService
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
@@ -20,7 +23,7 @@ object Module {
     @Provides
     fun provideRetrofit():Retrofit{
         return Retrofit.Builder()
-            .baseUrl("Here comes something diferent")
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
@@ -29,5 +32,17 @@ object Module {
     @Provides
     fun provideFirestoreDB(): FirebaseFirestore{
         return FirebaseFirestore.getInstance()
+    }
+
+    @Singleton
+    @Provides
+    fun provideFirestoreAuth(): FirebaseAuth {
+        return FirebaseAuth.getInstance()
+    }
+
+    @Singleton
+    @Provides
+    fun provideApiService(retrofit: Retrofit):ApiService{
+        return retrofit.create(ApiService::class.java)
     }
 }
