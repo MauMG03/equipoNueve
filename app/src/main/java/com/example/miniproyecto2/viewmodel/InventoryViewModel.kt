@@ -106,4 +106,14 @@ class InventoryViewModel @Inject constructor(
             }
         }
     }
+
+    fun deleteItem(item: Item){
+        viewModelScope.launch {
+            try {
+                inventoryRepository.deleteItem(item)
+            } catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+    }
 }

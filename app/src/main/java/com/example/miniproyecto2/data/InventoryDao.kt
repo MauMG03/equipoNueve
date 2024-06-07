@@ -85,6 +85,27 @@ class InventoryDao @Inject constructor(
             }
         }
 
+    override suspend fun deleteItem(item: Item) {
+        Log.d("Item", "Deleting item: $item")
+        val query: Query = firestore.collection("item")
+        val itemDocs = query.get().await()
+
+        for (document in itemDocs.documents){
+            Log.d("Delete", document.get("name").toString())
+            Log.d("Delete", document.get("id").toString() + "=" + item.id)
+            if(document.get("id").toString() == item.id){
+                firestore.collection("item").document(document.id)
+                    .delete()
+                    .addOnSuccessListener {
+                        Log.d("Item", "DocumentSnapshot successfully deleted!")
+                    }
+                    .addOnFailureListener { e ->
+                        Log.w("Item", "Error deleting document", e)
+                    }
+            }
+        }
+    }
+
         override suspend fun searchItems(criteria: SearchCriteria): MutableList<Item> {
             return try {
                 val query: Query = firestore.collection("item")

@@ -10,5 +10,7 @@ interface IInventoryDao {
 
     suspend fun editItem(item: Item): Unit
 
+    suspend fun deleteItem(item: Item): Unit
+
     suspend fun searchItems(criteria: SearchCriteria): MutableList<Item>
 }

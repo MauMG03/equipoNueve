@@ -63,6 +63,11 @@ class EditFragment : Fragment() {
                 Snackbar.make(binding.root, "Llene los campos faltantes", Snackbar.LENGTH_LONG).show()
             }
         }
+
+        binding.btDelete.setOnClickListener {
+            inventoryViewModel.deleteItem(receivedItem)
+            findNavController().navigate(R.id.action_editFragment_to_homeFragment2)
+        }
     }
 
     fun areFieldsFilled():Boolean {
