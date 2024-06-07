@@ -2,6 +2,7 @@ package com.example.miniproyecto2.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.miniproyecto2.model.Item
+import com.example.miniproyecto2.model.SearchCriteria
 import com.example.miniproyecto2.repository.ImageResponseRepository
 import com.example.miniproyecto2.repository.InventoryRepository
 import kotlinx.coroutines.Dispatchers
