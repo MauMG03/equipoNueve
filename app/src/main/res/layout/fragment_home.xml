@@ -57,20 +57,6 @@
                     android:src="@drawable/ic_exit" />
 
                 <TextView
-                    android:id="@+id/tvUserName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignEnd="@id/ivExit"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="5dp"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="40dp"
-                    android:paddingBottom="25dp"
-                    android:text="@string/usuario"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp" />
-
-                <TextView
                     android:id="@+id/tvExit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -78,7 +64,6 @@
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="5dp"
                     android:paddingStart="10dp"
-                    android:paddingTop="15dp"
                     android:paddingEnd="40dp"
                     android:text="@string/cerrar_sesi_n"
                     android:textColor="@color/intense_red"

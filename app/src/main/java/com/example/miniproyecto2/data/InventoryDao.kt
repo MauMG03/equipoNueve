@@ -118,6 +118,7 @@ class InventoryDao @Inject constructor(
                     var ifMaxPrice = criteria.maxPrice != null && criteria.maxPrice > 0
                     var ifCategory = !criteria.category.isNullOrBlank()
                     var ifDescription = !criteria.description.isNullOrBlank()
+                    Log.d("Dao", "Criteria: $criteria")
 
                     if(ifName){
                         ifName = !("${document.get("name")}".contains(criteria.name!!, ignoreCase = true))

@@ -183,7 +183,7 @@
                 android:layout_marginEnd="25dp"
                 android:layout_marginTop="10dp"
                 android:inputType="text"
-                android:text="@string/jardiner_a"
+                android:text="@string/jardineria"
                 style="@style/TextAppearance.AppCompat.Widget.DropDownItem"
                 android:textSize="18sp"
                 android:background="@drawable/edit_text_bg"
