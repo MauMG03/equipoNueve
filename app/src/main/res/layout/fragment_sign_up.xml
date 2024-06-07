@@ -40,7 +40,30 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/password"
+            android:inputType="textPassword"
             app:layout_constraintTop_toBottomOf="@+id/etEmail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="10dp"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnSignUp"
+            android:text="Registrarse"
+            app:layout_constraintTop_toBottomOf="@+id/etPassword"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="10dp"
+            />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Iniciar Sesión"
+            app:layout_constraintTop_toBottomOf="@+id/btnSignUp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_margin="10dp"

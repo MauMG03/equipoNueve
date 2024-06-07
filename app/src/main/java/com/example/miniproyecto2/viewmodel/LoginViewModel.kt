@@ -17,7 +17,7 @@ class LoginViewModel : ViewModel(){
         }
     }
 
-    fun session(email: String?, isEnableView: (Boolean) -> Unit){
+    fun sesion(email: String?, isEnableView: (Boolean) -> Unit){
         repository.session(email){
                 response -> isEnableView(response)
         }
