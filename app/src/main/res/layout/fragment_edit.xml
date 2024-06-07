@@ -29,24 +29,40 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
-            android:id="@+id/ivOpenGiftBox"
+            android:id="@+id/ivPaper"
             android:layout_width="140dp"
             android:layout_height="100dp"
-            android:background="@mipmap/open_gift_box"
+            android:background="@drawable/paper"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivBanner" />
+            app:layout_constraintTop_toBottomOf="@id/ivBanner"
+            app:layout_constraintHorizontal_bias="0.1"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/agregar_items"
-            android:textColor="@color/dark_orange"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="@id/ivOpenGiftBox"
-            app:layout_constraintEnd_toEndOf="@id/ivOpenGiftBox"
-            app:layout_constraintStart_toStartOf="@id/ivOpenGiftBox"
-            app:layout_constraintTop_toTopOf="@id/ivOpenGiftBox" />
+            android:text="@string/editar"
+            android:textColor="@color/black"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:rotation="-11"
+            app:layout_constraintBottom_toBottomOf="@id/ivPaper"
+            app:layout_constraintEnd_toEndOf="@id/ivPaper"
+            app:layout_constraintStart_toStartOf="@id/ivPaper"
+            app:layout_constraintTop_toTopOf="@id/ivPaper"
+            app:layout_constraintHorizontal_bias="0.35"
+            app:layout_constraintVertical_bias="0.35"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/items"
+            android:textColor="@color/black"
+            android:textSize="28sp"
+            android:layout_marginStart="-20dp"
+            app:layout_constraintBottom_toBottomOf="@id/ivPaper"
+            app:layout_constraintStart_toEndOf="@id/ivPaper"
+            app:layout_constraintTop_toTopOf="@id/ivPaper" />
 
         <TextView
             android:id="@+id/tvName"
@@ -57,7 +73,7 @@
             android:text="@string/nombre_del_item"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivOpenGiftBox" />
+            app:layout_constraintTop_toBottomOf="@id/ivPaper" />
 
         <EditText
             android:id="@+id/etName"
@@ -192,19 +208,38 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/btAdd"
+            android:id="@+id/btEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/tilCategory"
-            android:text="@string/agregar"
+            android:text="@string/listo"
             android:textColor="@color/black"
-            android:drawableLeft="@drawable/ic_add"
+            android:drawableLeft="@drawable/ic_edit"
             android:drawablePadding="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/btDelete"
             app:layout_constraintBottom_toBottomOf="parent"
             android:backgroundTint="@color/light_gray"
+            android:layout_marginEnd="50dp"
             />
+
+        <Button
+            android:id="@+id/btDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tilCategory"
+            android:text="@string/borrar"
+            android:textColor="@color/black"
+            android:drawableLeft="@drawable/ic_delete"
+            android:drawablePadding="8dp"
+            app:layout_constraintStart_toStartOf="@+id/btEdit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:backgroundTint="@color/light_red"
+            android:layout_marginStart="50dp"
+            />
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

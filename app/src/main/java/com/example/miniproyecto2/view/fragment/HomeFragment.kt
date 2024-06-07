@@ -1,25 +1,28 @@
 package com.example.miniproyecto2.view.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.addCallback
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.miniproyecto2.R
 import com.example.miniproyecto2.databinding.FragmentHomeBinding
 import com.example.miniproyecto2.view.adapter.InventoryAdapter
+import com.example.miniproyecto2.view.dialog.MiDialogo
 import com.example.miniproyecto2.viewmodel.InventoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var  binding: FragmentHomeBinding
-    private val inventoryViewModel: InventoryViewModel by viewModels()
+    private val inventoryViewModel: InventoryViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,13 +50,36 @@ class HomeFragment : Fragment() {
         binding.addButton.setOnClickListener{
             findNavController().navigate(R.id.action_homeFragment2_to_createItemFragment2)
         }
+
+        binding.searchButton.setOnClickListener{
+            showDialog()
+        }
     }
 
     private fun observadorViewModel(){
         observerItems()
+        cleanButtonObserver()
     }
 
-    private fun observerItems(){
+    private fun cleanButtonObserver(){
+        inventoryViewModel.showClearButton.observe(viewLifecycleOwner) { showButton ->
+            if (showButton) {
+                binding.searchButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_clear))
+                binding.searchButton.setOnClickListener{
+                    findNavController().navigate(R.id.action_homeFragment_self)
+                }
+                binding.searchButton.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.green)
+            } else {
+                binding.searchButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_search))
+                binding.searchButton.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.dark_gray)
+                binding.searchButton.setOnClickListener{
+                    showDialog()
+                }
+            }
+        }
+    }
+
+    fun observerItems(){
         inventoryViewModel.getItems()
         inventoryViewModel.items.observe(viewLifecycleOwner){items ->
             val recycler = binding.recyclerview
@@ -63,5 +89,10 @@ class HomeFragment : Fragment() {
             recycler.adapter = adapter
             adapter.notifyDataSetChanged()
         }
+    }
+
+    private fun showDialog(){
+        val dialog = MiDialogo()
+        dialog.show(childFragmentManager, "dialog")
     }
 }
