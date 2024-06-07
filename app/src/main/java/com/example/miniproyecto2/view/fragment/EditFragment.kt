@@ -14,8 +14,10 @@ import com.bumptech.glide.Glide
 import com.example.miniproyecto2.R
 import com.example.miniproyecto2.databinding.FragmentEditBinding
 import com.example.miniproyecto2.model.Item
+import com.example.miniproyecto2.view.MainActivity
 import com.example.miniproyecto2.viewmodel.InventoryViewModel
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.log
 
@@ -104,4 +106,6 @@ class EditFragment : Fragment() {
             binding.btEdit.isEnabled = areFieldsFilled()
         }
     }
+
+
 }

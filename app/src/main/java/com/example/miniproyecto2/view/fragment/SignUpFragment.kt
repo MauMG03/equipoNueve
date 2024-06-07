@@ -1,5 +1,6 @@
 package com.example.miniproyecto2.view.fragment
 
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -29,6 +30,7 @@ class SignUpFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_sign_up, container, false)
+        sharedPreferences = requireActivity().getSharedPreferences("shared", Context.MODE_PRIVATE)
         binding = FragmentSignUpBinding.inflate(inflater)
         binding.lifecycleOwner = this
         return binding.root
@@ -37,6 +39,7 @@ class SignUpFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupListeners()
+        sesion()
     }
 
     private fun setupListeners(){
@@ -84,8 +87,8 @@ class SignUpFragment : Fragment() {
         val email = sharedPreferences.getString("email",null)
         loginViewModel.sesion(email){ isEnableView ->
             if (isEnableView){
-                //binding..visibility = View.INVISIBLE
-                //goToHome(email)
+                binding.clContenedor.visibility = View.INVISIBLE
+                goToHome(email)
             }
         }
     }
