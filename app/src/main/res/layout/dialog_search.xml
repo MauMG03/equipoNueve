@@ -192,13 +192,13 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <CheckBox
-            android:id="@+id/cbUsername"
+            android:id="@+id/cbDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="4dp"
-            android:text="@string/filtrar_por_usuario"
+            android:text="@string/filtrar_por_descripci_n"
             android:textColor="@color/green"
             android:textSize="13sp"
             android:buttonTint="@color/green"
@@ -207,7 +207,7 @@
             app:layout_constraintTop_toBottomOf="@id/tilCategory" />
 
         <EditText
-            android:id="@+id/etUsername"
+            android:id="@+id/etDescription"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginStart="15dp"
@@ -219,7 +219,7 @@
             android:inputType="text"
             android:padding="10dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cbUsername" />
+            app:layout_constraintTop_toBottomOf="@id/cbDescription" />
 
         <Button
             android:id="@+id/buttonSearch"
@@ -232,7 +232,7 @@
             android:drawableTint="@color/dark_gray"
             android:text="@string/buscar"
             app:layout_constraintRight_toRightOf="@id/leftGuideline"
-            app:layout_constraintTop_toBottomOf="@id/etUsername" />
+            app:layout_constraintTop_toBottomOf="@id/etDescription" />
 
         <Button
             android:id="@+id/buttonCancel"
@@ -246,7 +246,7 @@
             android:textColor="@color/black"
             app:layout_constraintLeft_toLeftOf="@id/leftGuideline"
             app:layout_constraintStart_toEndOf="@id/buttonSearch"
-            app:layout_constraintTop_toBottomOf="@id/etUsername" />
+            app:layout_constraintTop_toBottomOf="@id/etDescription" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

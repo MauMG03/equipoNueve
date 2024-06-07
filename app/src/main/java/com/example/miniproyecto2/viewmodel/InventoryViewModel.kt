@@ -66,12 +66,6 @@ class InventoryViewModel @Inject constructor(
         }
     }
 
-    fun deleteItems() {
-        viewModelScope.launch {
-            _items.value = mutableListOf()
-        }
-    }
-
     private var initialized = false
     fun getCategories():MutableLiveData<MutableList<String>> {
        if(!initialized){

@@ -70,7 +70,7 @@ class MiDialogo : DialogFragment() {
         binding.etDesde.addTextChangedListener(TextWatcher)
         binding.etHasta.addTextChangedListener(TextWatcher)
         binding.atvCategory.addTextChangedListener(TextWatcher)
-        binding.etUsername.addTextChangedListener(TextWatcher)
+        binding.etDescription.addTextChangedListener(TextWatcher)
 
         binding.buttonCancel.setOnClickListener {
             dismiss()
@@ -95,8 +95,8 @@ class MiDialogo : DialogFragment() {
             updateFieldState(binding.cbPrice, binding.etHasta, "10000000")
         }
 
-        binding.cbUsername.setOnCheckedChangeListener { _, isChecked ->
-            updateFieldState(binding.cbUsername, binding.etUsername, "Inserta el nombre de usuario")
+        binding.cbDescription.setOnCheckedChangeListener { _, isChecked ->
+            updateFieldState(binding.cbDescription, binding.etDescription, "Inserta la descripcion a buscar")
         }
 
         binding.buttonSearch.setOnClickListener {
@@ -105,9 +105,9 @@ class MiDialogo : DialogFragment() {
                 val desde = if (binding.etDesde.text.toString() != "") binding.etDesde.text.toString().toDouble() else 0.0
                 val hasta = if (binding.etHasta.text.toString() != "") binding.etHasta.text.toString().toDouble() else 1000000000.0
                 val category = binding.atvCategory.text.toString()
-                val username = binding.etUsername.text.toString()
+                val description = binding.etDescription.text.toString()
 
-                val searchCriteria = SearchCriteria(name,desde,hasta,category,username)
+                val searchCriteria = SearchCriteria(name,desde,hasta,category,description)
                 inventoryViewModel.searchItems(searchCriteria)
             } else {
                 Snackbar.make(binding.root, "Llene algun criterio de busqueda", Snackbar.LENGTH_LONG).show()
@@ -130,7 +130,7 @@ class MiDialogo : DialogFragment() {
         val desde = binding.etDesde.text.toString() != "" && binding.cbPrice.isChecked
         val hasta = binding.etHasta.text.toString() != "" && binding.cbPrice.isChecked
         val cat = binding.atvCategory.text.toString() != "" && binding.cbCategory.isChecked
-        val username = binding.etUsername.text.toString() != "" && binding.cbUsername.isChecked
+        val username = binding.etDescription.text.toString() != "" && binding.cbDescription.isChecked
         return name || desde || hasta || cat || username
     }
 

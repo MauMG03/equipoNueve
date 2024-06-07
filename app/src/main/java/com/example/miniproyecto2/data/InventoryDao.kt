@@ -117,7 +117,7 @@ class InventoryDao @Inject constructor(
                     var ifMinPrice = criteria.minPrice != null && criteria.minPrice > 0
                     var ifMaxPrice = criteria.maxPrice != null && criteria.maxPrice > 0
                     var ifCategory = !criteria.category.isNullOrBlank()
-                    var ifUsername = !criteria.username.isNullOrBlank()
+                    var ifDescription = !criteria.description.isNullOrBlank()
 
                     if(ifName){
                         ifName = !("${document.get("name")}".contains(criteria.name!!, ignoreCase = true))
@@ -134,7 +134,11 @@ class InventoryDao @Inject constructor(
                         ifCategory = !("${document.get("category")}".contains(criteria.category!!, ignoreCase = true))
                     }
 
-                    if(!ifName && !ifMinPrice && !ifMaxPrice && !ifCategory && !ifUsername){
+                    if(ifDescription){
+                        ifDescription = !("${document.get("description")}".contains(criteria.description!!, ignoreCase = true))
+                    }
+
+                    if(!ifName && !ifMinPrice && !ifMaxPrice && !ifCategory && !ifDescription){
                         items.add(Item(
                             id = "${document.get("id")}",
                             name = "${document.get("name")}",

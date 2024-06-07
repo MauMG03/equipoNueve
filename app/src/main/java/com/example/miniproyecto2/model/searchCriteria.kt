@@ -5,5 +5,5 @@ data class SearchCriteria(
     val minPrice: Double? = null,
     val maxPrice: Double? = null,
     val category: String? = null,
-    val username: String? = null
+    val description: String? = null
 )
