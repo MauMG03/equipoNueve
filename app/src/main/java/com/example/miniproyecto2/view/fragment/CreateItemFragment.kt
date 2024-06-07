@@ -1,6 +1,7 @@
 package com.example.miniproyecto2.view.fragment
 
 import android.os.Bundle
+import android.os.SystemClock
 import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -52,6 +53,7 @@ class CreateItemFragment : Fragment() {
                 val category = binding.atvCategory.text.toString()
 
                 inventoryViewModel.addItem(name,des,unitPr,qty,category)
+                SystemClock.sleep(2000)
                 findNavController().navigate(R.id.action_createItemFragment2_to_homeFragment2)
             } else {
                 Snackbar.make(binding.root, "Llene los campos faltantes", Snackbar.LENGTH_LONG).show()
