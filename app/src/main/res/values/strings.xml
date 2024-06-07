@@ -6,4 +6,6 @@
     <string name="login">INICIAR SESIÓN</string>
     <string name="signup">REGISTRARSE</string>
     <string name="slogan">TU INVENTARIO EN TUS MANOS</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
 </resources>
