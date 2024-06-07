@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.miniproyecto2.R
 import com.example.miniproyecto2.databinding.FragmentEditBinding
@@ -55,6 +56,7 @@ class EditFragment : Fragment() {
                 val des = binding.etDescription.text.toString()
                 val category = binding.atvCategory.text.toString()
                 inventoryViewModel.editItem(id, name,des,unitPr,qty,category)
+                findNavController().navigate(R.id.action_editFragment_to_homeFragment2)
             } else {
                 Snackbar.make(binding.root, "Llene los campos faltantes", Snackbar.LENGTH_LONG).show()
             }

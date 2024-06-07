@@ -25,7 +25,7 @@ class InventoryViewHolder (binding: InventoryItemBinding, navController: NavCont
         bindingItem.inventoryItem.setOnClickListener {
             val bundle = Bundle()
             bundle.putSerializable("item", item)
-            navController.navigate(R.id.action_homeFragment_to_editFragment, bundle)
+            navController.navigate(R.id.action_homeFragment2_to_editFragment, bundle)
         }
     }
 }

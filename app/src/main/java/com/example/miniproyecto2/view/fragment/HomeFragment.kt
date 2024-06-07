@@ -66,7 +66,7 @@ class HomeFragment : Fragment() {
             if (showButton) {
                 binding.searchButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_clear))
                 binding.searchButton.setOnClickListener{
-                    findNavController().navigate(R.id.action_homeFragment_self)
+                    findNavController().navigate(R.id.action_homeFragment2_self)
                 }
                 binding.searchButton.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.green)
             } else {

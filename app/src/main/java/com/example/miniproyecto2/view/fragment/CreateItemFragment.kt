@@ -52,7 +52,7 @@ class CreateItemFragment : Fragment() {
                 val category = binding.atvCategory.text.toString()
 
                 inventoryViewModel.addItem(name,des,unitPr,qty,category)
-                //findNavController().navigate(R.id.action_createItemFragment_to_loginFragment)
+                findNavController().navigate(R.id.action_createItemFragment2_to_homeFragment2)
             } else {
                 Snackbar.make(binding.root, "Llene los campos faltantes", Snackbar.LENGTH_LONG).show()
             }
