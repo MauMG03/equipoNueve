@@ -19,6 +19,7 @@ class InventoryDao @Inject constructor(
                 val items:MutableList<Item> = mutableListOf()
                 for (document in itemDocs.documents){
                     items.add(Item(
+                        id = "${document.get("id")}",
                         name = "${document.get("name")}",
                         description = "${document.get("description")}",
                         price = "${document.get("price")}".toDouble(),
@@ -35,7 +36,7 @@ class InventoryDao @Inject constructor(
         }
 
        override suspend fun addItem(item:Item) {
-            firestore.collection("item")
+            val documentReference = firestore.collection("item")
                 .add(item)
                 .addOnSuccessListener {  documentReference ->
                     Log.d("Item", "DocumentSnapshot added with ID: ${documentReference.id}")
@@ -43,7 +44,46 @@ class InventoryDao @Inject constructor(
                 .addOnFailureListener{e ->
                     Log.w("Item", "Error adding the item", e)
                 }
+                .await()
+
+            val id = documentReference.id
+            firestore.collection("item").document(id)
+                .update("id", id)
+                .addOnSuccessListener {
+                    Log.d("Item", "DocumentSnapshot successfully updated!")
+                }
+                .addOnFailureListener { e ->
+                    Log.w("Item", "Error updating document", e)
+                }
        }
+
+        override suspend fun editItem(item: Item) {
+            Log.d("Item", "Editing item: $item")
+            val query: Query = firestore.collection("item")
+            val itemDocs = query.get().await()
+
+            for (document in itemDocs.documents){
+                Log.d("Edit", document.get("name").toString())
+                Log.d("Edit", document.get("id").toString() + "=" + item.id)
+                if(document.get("id").toString() == item.id){
+                    firestore.collection("item").document(document.id)
+                        .update(
+                            "name", item.name,
+                            "description", item.description,
+                            "price", item.price,
+                            "quantity", item.quantity,
+                            "image", item.image,
+                            "category", item.category
+                        )
+                        .addOnSuccessListener {
+                            Log.d("Item", "DocumentSnapshot successfully updated!")
+                        }
+                        .addOnFailureListener { e ->
+                            Log.w("Item", "Error updating document", e)
+                        }
+                }
+            }
+        }
 
         override suspend fun searchItems(criteria: SearchCriteria): MutableList<Item> {
             return try {
@@ -75,6 +115,7 @@ class InventoryDao @Inject constructor(
 
                     if(!ifName && !ifMinPrice && !ifMaxPrice && !ifCategory && !ifUsername){
                         items.add(Item(
+                            id = "${document.get("id")}",
                             name = "${document.get("name")}",
                             description = "${document.get("description")}",
                             price = "${document.get("price")}".toDouble(),

@@ -51,7 +51,7 @@ class InventoryViewModel @Inject constructor(
             try {
                 val results = inventoryRepository.searchItems(criteria)
                 val updatedItems = if (results.isEmpty())
-                    mutableListOf(Item("No se encontraron resultados", "", 0.0, 0, "", ""))
+                    mutableListOf(Item("","No se encontraron resultados", "", 0.0, 0, "", ""))
                 else
                     results
 
@@ -87,8 +87,20 @@ class InventoryViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 val image = imageResponseRepository.getImage(name)
-                val item = Item(name,des,price,qty,image,category)
+                val item = Item("", name,des,price,qty,image,category)
                 inventoryRepository.addItem(item)
+            } catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun editItem(id: String, name:String,des:String,price:Double,qty:Int,category: String){
+        viewModelScope.launch {
+            try {
+                val image = imageResponseRepository.getImage(name)
+                val item = Item(id, name,des,price,qty,image,category)
+                inventoryRepository.editItem(item)
             } catch (e:Exception){
                 e.printStackTrace()
             }

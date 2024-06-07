@@ -184,26 +184,34 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etDescription" />
 
-        <AutoCompleteTextView
-            android:id="@+id/atvCategory"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginTop="10dp"
-            android:hint="@string/jardiner_a"
-            android:inputType="text"
-            style="@style/TextAppearance.AppCompat.Widget.DropDownItem"
-            android:textSize="18sp"
-            android:background="@drawable/edit_text_bg"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvCategory"/>
+            app:layout_constraintTop_toBottomOf="@id/tvCategory">
+            <AutoCompleteTextView
+                android:id="@+id/atvCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginTop="10dp"
+                android:inputType="text"
+                android:text="@string/jardiner_a"
+                style="@style/TextAppearance.AppCompat.Widget.DropDownItem"
+                android:textSize="18sp"
+                android:background="@drawable/edit_text_bg"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvCategory"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/btAdd"
+            android:id="@+id/btEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/atvCategory"
+            app:layout_constraintTop_toBottomOf="@id/tilCategory"
             android:text="@string/listo"
             android:textColor="@color/black"
             android:drawableLeft="@drawable/ic_edit"
@@ -219,12 +227,12 @@
             android:id="@+id/btDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/atvCategory"
+            app:layout_constraintTop_toBottomOf="@id/tilCategory"
             android:text="@string/borrar"
             android:textColor="@color/black"
             android:drawableLeft="@drawable/ic_delete"
             android:drawablePadding="8dp"
-            app:layout_constraintStart_toStartOf="@+id/btAdd"
+            app:layout_constraintStart_toStartOf="@+id/btEdit"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:backgroundTint="@color/light_red"

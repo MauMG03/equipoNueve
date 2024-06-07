@@ -1,60 +1,105 @@
 package com.example.miniproyecto2.view.fragment
 
 import android.os.Bundle
+import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
 import com.example.miniproyecto2.R
+import com.example.miniproyecto2.databinding.FragmentEditBinding
+import com.example.miniproyecto2.model.Item
+import com.example.miniproyecto2.viewmodel.InventoryViewModel
+import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
+import kotlin.math.log
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [EditFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+@AndroidEntryPoint
 class EditFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    lateinit var binding: FragmentEditBinding
+    private val inventoryViewModel: InventoryViewModel by viewModels()
+    private lateinit var receivedItem: Item
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit, container, false)
+        val receivedBundle = arguments
+        receivedItem = receivedBundle?.getSerializable("item") as Item
+        binding = FragmentEditBinding.inflate(inflater)
+        binding.lifecycleOwner = this
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment EditFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            EditFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        controllers()
+        observadorViewModel()
+    }
+
+    private fun observadorViewModel(){
+        observeCategories()
+    }
+
+    private fun controllers(){
+        binding.btEdit.setOnClickListener {
+            if(validateFields()){
+                val id = receivedItem.id
+                val name = binding.etName.text.toString()
+                val qty = binding.etQuantity.text.toString().toInt()
+                val unitPr = binding.etUnitPrice.text.toString().toDouble()
+                val des = binding.etDescription.text.toString()
+                val category = binding.atvCategory.text.toString()
+                inventoryViewModel.editItem(id, name,des,unitPr,qty,category)
+            } else {
+                Snackbar.make(binding.root, "Llene los campos faltantes", Snackbar.LENGTH_LONG).show()
             }
+        }
+    }
+
+    fun areFieldsFilled():Boolean {
+        val name = binding.etName.text ?: ""
+        val qty = binding.etQuantity.text ?: ""
+        val unitP = binding.etUnitPrice.text ?: ""
+        val des = binding.etDescription.text ?: ""
+        val cat = binding.atvCategory.text ?: ""
+        return name.isNotEmpty() && qty.isNotEmpty() && unitP.isNotEmpty() && des.isNotEmpty() && cat.isNotEmpty()
+    }
+
+    private fun validateFields(): Boolean{
+        binding.etName.addTextChangedListener(TextWatcher)
+        binding.etQuantity.addTextChangedListener(TextWatcher)
+        binding.etUnitPrice.addTextChangedListener(TextWatcher)
+        binding.etDescription.addTextChangedListener(TextWatcher)
+        binding.atvCategory.addTextChangedListener(TextWatcher)
+
+        binding.btEdit.isEnabled = areFieldsFilled()
+        return areFieldsFilled()
+    }
+
+    private fun observeCategories(){
+        inventoryViewModel.getCategories()
+        inventoryViewModel.categories.observe(viewLifecycleOwner){ categories ->
+            Log.d("CATEGORIES",categories.toString())
+            val categoriesAdapter = ArrayAdapter(requireContext(),android.R.layout.simple_dropdown_item_1line,categories)
+            binding.atvCategory.setAdapter(categoriesAdapter)
+            binding.atvCategory.threshold = 2
+        }
+    }
+
+    private val TextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        }
+
+        override fun afterTextChanged(s: android.text.Editable?) {
+            binding.btEdit.isEnabled = areFieldsFilled()
+        }
     }
 }
