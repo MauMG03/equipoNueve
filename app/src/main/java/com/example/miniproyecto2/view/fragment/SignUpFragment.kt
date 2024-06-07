@@ -12,6 +12,8 @@ import androidx.fragment.app.viewModels
 
 import com.example.miniproyecto2.viewmodel.LoginViewModel
 import com.example.miniproyecto2.databinding.FragmentSignUpBinding
+import com.example.miniproyecto2.view.MainActivity
+import com.google.android.material.snackbar.Snackbar
 
 class SignUpFragment : Fragment() {
 
@@ -49,30 +51,31 @@ class SignUpFragment : Fragment() {
         val pass = binding.etPassword.text.toString()
         loginViewModel.registerUser(email,pass) { isRegister ->
             if (isRegister) {
-                //goToHome(email)
-                Toast.makeText(requireContext(), "Registro exitoso", Toast.LENGTH_SHORT).show()
+                goToHome(email)
+                Snackbar.make(binding.root, "Registro exitoso", Snackbar.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(requireContext(), "Error en el registro", Toast.LENGTH_SHORT).show()
+                Snackbar.make(binding.root, "Error en el registro", Snackbar.LENGTH_SHORT).show()
             }
 
         }
     }
-//    private fun goToHome(email: String?){
-//        val intent = Intent (this, LoginActivity::class.java).apply {
-//            putExtra("email",email)
-//        }
-//        startActivity(intent)
-//        finish()
-//    }
-    private fun loginUser(){
+    private fun goToHome(email: String?){
+        val intent = Intent (requireActivity(), MainActivity::class.java).apply {
+            putExtra("email",email)
+        }
+        startActivity(intent)
+        requireActivity().finish()
+    }
+    private fun loginUser() {
         val email = binding.etEmail.text.toString()
         val pass = binding.etPassword.text.toString()
-        loginViewModel.loginUser(email,pass){ isLogin ->
-            if (isLogin){
-                //goToHome(email)
-                Toast.makeText(requireContext(), "Login correcto", Toast.LENGTH_SHORT).show()
-            }else {
-                Toast.makeText(requireContext(), "Login incorrecto", Toast.LENGTH_SHORT).show()            }
+        loginViewModel.loginUser(email, pass) { isLogin ->
+            if (isLogin) {
+                goToHome(email)
+                Snackbar.make(binding.root, "Login correcto", Snackbar.LENGTH_SHORT).show()
+            } else {
+                Snackbar.make(binding.root, "Login incorrecto", Snackbar.LENGTH_SHORT).show()
+            }
         }
     }
     private fun sesion(){

@@ -10,7 +10,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.fragment.SignUpFragment">
+        tools:context=".view.fragment.SignUpFragment"
+        android:padding="25dp">
 
         <TextView
             android:id="@+id/tvSignUp"
@@ -32,7 +33,8 @@
             app:layout_constraintTop_toBottomOf="@+id/tvSignUp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="10dp"
+            android:layout_marginTop="20dp"
+
             />
 
         <EditText
@@ -44,29 +46,32 @@
             app:layout_constraintTop_toBottomOf="@+id/etEmail"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="10dp"
+            android:layout_marginTop="20dp"
+
             />
 
-        <Button
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/btnSignUp"
+            style="@style/CustomButton"
             android:text="Registrarse"
             app:layout_constraintTop_toBottomOf="@+id/etPassword"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="10dp"
+            android:layout_marginTop="40dp"
             />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnLogin"
-            android:layout_width="wrap_content"
+            style="@style/CustomSignButton"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Iniciar Sesión"
             app:layout_constraintTop_toBottomOf="@+id/btnSignUp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="10dp"
+            android:layout_marginTop="20dp"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
