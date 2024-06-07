@@ -9,25 +9,28 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.miniproyecto2.R
-import com.example.miniproyecto2.databinding.FragmentCreateItemBinding
+import com.example.miniproyecto2.databinding.FragmentEditBinding
 import com.example.miniproyecto2.model.Item
 import com.example.miniproyecto2.viewmodel.InventoryViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-
+import kotlin.math.log
 
 @AndroidEntryPoint
-class CreateItemFragment : Fragment() {
-    lateinit var binding: FragmentCreateItemBinding
+class EditFragment : Fragment() {
+    lateinit var binding: FragmentEditBinding
     private val inventoryViewModel: InventoryViewModel by viewModels()
+    private lateinit var receivedItem: Item
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentCreateItemBinding.inflate(inflater)
+        val receivedBundle = arguments
+        receivedItem = receivedBundle?.getSerializable("item") as Item
+        binding = FragmentEditBinding.inflate(inflater)
         binding.lifecycleOwner = this
         return binding.root
     }
@@ -43,23 +46,18 @@ class CreateItemFragment : Fragment() {
     }
 
     private fun controllers(){
-        binding.btAdd.setOnClickListener {
+        binding.btEdit.setOnClickListener {
             if(validateFields()){
+                val id = receivedItem.id
                 val name = binding.etName.text.toString()
                 val qty = binding.etQuantity.text.toString().toInt()
                 val unitPr = binding.etUnitPrice.text.toString().toDouble()
                 val des = binding.etDescription.text.toString()
                 val category = binding.atvCategory.text.toString()
-
-                inventoryViewModel.addItem(name,des,unitPr,qty,category)
-                //findNavController().navigate(R.id.action_createItemFragment_to_loginFragment)
+                inventoryViewModel.editItem(id, name,des,unitPr,qty,category)
             } else {
                 Snackbar.make(binding.root, "Llene los campos faltantes", Snackbar.LENGTH_LONG).show()
             }
-        }
-
-        binding.atvCategory.setOnItemClickListener { _, _, _, _ ->
-            binding.tilCategory.isErrorEnabled = false
         }
     }
 
@@ -79,7 +77,7 @@ class CreateItemFragment : Fragment() {
         binding.etDescription.addTextChangedListener(TextWatcher)
         binding.atvCategory.addTextChangedListener(TextWatcher)
 
-        binding.btAdd.isEnabled = areFieldsFilled()
+        binding.btEdit.isEnabled = areFieldsFilled()
         return areFieldsFilled()
     }
 
@@ -101,7 +99,7 @@ class CreateItemFragment : Fragment() {
         }
 
         override fun afterTextChanged(s: android.text.Editable?) {
-            binding.btAdd.isEnabled = areFieldsFilled()
+            binding.btEdit.isEnabled = areFieldsFilled()
         }
     }
 }
